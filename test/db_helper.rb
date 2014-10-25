@@ -9,7 +9,7 @@ require 'active_record'
 
 config = {
 		:database => 'opinion_test',
-		:username => 'opinion_test'
+		:username => 'opinion_root'
 }
 
 puts "ENV[ 'DB' ]: #{ENV['DB'].inspect}"
@@ -37,7 +37,7 @@ case ENV['DB']
 		config = {
 				:adapter => 'postgresql',
 				:database => 'opinion_test',
-				:username => 'opinion_test',
+				:username => 'opinion_root',
 		}
 		if ENV['TRAVIS']
 			config = {

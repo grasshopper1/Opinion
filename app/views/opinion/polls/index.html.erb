@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>View</th>
-      <th>Description</th>
+      <th>Question</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,7 +15,7 @@
     <% @polls.each do |poll| %>
       <tr>
         <td><%= poll.view %></td>
-        <td><%= poll.description %></td>
+        <td><%= poll.question %></td>
         <td><%= link_to 'Show', poll %></td>
         <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
         <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>

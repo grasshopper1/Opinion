@@ -56,7 +56,7 @@ module Opinion
 
 		# Only allow a trusted parameter "white list" through.
 		def poll_params
-			params.require(:poll).permit(:view, :description)
+			params.require(:poll).permit(:view, :question)
 		end
 	end
 end

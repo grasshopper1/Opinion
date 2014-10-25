@@ -34,5 +34,5 @@ Testing is a bit more than trivial now as our #tally and #plusminus_tally querie
     
     ```shell
       export DB=postgres # or mysql to use the mysql database.
-      rake # Runs the test suite against all adapters.
+      bundle exec rake # Runs the test suite against all adapters.
     ```

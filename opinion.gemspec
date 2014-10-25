@@ -15,8 +15,15 @@ Gem::Specification.new do |s|
 
 	s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 	s.test_files = Dir['test/**/*']
+	s.require_paths = ['lib']
 
 	s.add_dependency 'rails', '~> 4.0.3'
 
-	s.add_development_dependency 'sqlite3'
+	s.add_runtime_dependency('statistics2')
+	s.add_development_dependency('simplecov')
+	s.add_development_dependency('bundler')
+	s.add_development_dependency('mysql2')
+	s.add_development_dependency('pg')
+	s.add_development_dependency('sqlite3')
+	s.add_development_dependency('rake')
 end

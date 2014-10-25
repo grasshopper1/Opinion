@@ -1,26 +1,26 @@
-##### Opinion
+### Opinion
 
 This project rocks and uses MIT-LICENSE.
 
-#### Usage
+##### Usage
 
 TODO
 
-#### ThumbsUp tests (See thumbs\_up gem)
+##### ThumbsUp tests (See thumbs\_up gem)
 
 Testing is a bit more than trivial now as our #tally and #plusminus_tally queries don't function properly under SQLite. To set up for testing:
 
-* mysql
+* mysql (not tested)
 
+    ```shell
+      mysql -uroot # You may have set a password locally. Change as needed.
+        CREATE USER 'opinion_root'@'localhost' IDENTIFIED BY 'opinion_root';
+        CREATE DATABASE opinion_test;
+        USE opinion_test;
+        GRANT ALL PRIVILEGES ON opinion_test TO 'opinion_root'@'localhost' IDENTIFIED BY 'opinion_root';
+        exit;
     ```
-    $ mysql -uroot # You may have set a password locally. Change as needed.
-      > CREATE USER 'opinion_root'@'localhost' IDENTIFIED BY 'opinion_root';
-      > CREATE DATABASE opinion_test;
-      > USE opinion_test;
-      > GRANT ALL PRIVILEGES ON opinion_test TO 'opinion_root'@'localhost' IDENTIFIED BY 'opinion_root';
-      > exit;
-    ```
-* Postgres (
+* Postgres
 
     ```shell
       psql -c 'CREATE ROLE opinion_root;'

@@ -10,4 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_nested_form
+//= require bootstrap/bootstrap
 //= require_tree .

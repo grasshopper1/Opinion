@@ -16,6 +16,7 @@ module Opinion
 		# GET /polls/new
 		def new
 			@poll = Poll.new
+			@poll.options.build # add one option by default.
 		end
 
 		# GET /polls/1/edit
@@ -56,7 +57,7 @@ module Opinion
 
 		# Only allow a trusted parameter "white list" through.
 		def poll_params
-			params.require(:poll).permit(:view, :question)
+			params.require(:poll).permit(:view, :question, options_attributes: [:id, :description, :_destroy])
 		end
 	end
 end

@@ -2,6 +2,9 @@ PATH
   remote: .
   specs:
     opinion (0.0.1)
+      bootstrap-rails-engine
+      bootstrap_form
+      nested_form
       rails (~> 4.0.3)
       statistics2
 
@@ -33,6 +36,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bootstrap-rails-engine (3.1.1.0)
+      railties (>= 3.0)
+    bootstrap_form (2.2.0)
     builder (3.1.4)
     docile (1.1.5)
     erubis (2.7.0)
@@ -44,6 +50,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.10.1)
     mysql2 (0.3.16)
+    nested_form (0.3.2)
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -81,7 +88,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    tzinfo (0.3.41)
+    tzinfo (0.3.42)
 
 PLATFORMS
   ruby

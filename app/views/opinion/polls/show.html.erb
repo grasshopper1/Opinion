@@ -10,5 +10,14 @@
   <%= @poll.question %>
 </p>
 
+<div class="options">
+  <% @poll.options.each do |option| %>
+    <p>
+      <strong>Option:</strong>
+      <%= option.description %>
+    </p>
+  <% end %>
+</div>
+
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>

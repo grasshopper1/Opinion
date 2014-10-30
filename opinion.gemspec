@@ -18,8 +18,6 @@ Gem::Specification.new do |s|
 	s.require_paths = ['lib']
 
 	s.add_dependency 'rails', '~> 4.0.3'
-	s.add_dependency 'bootstrap-rails-engine'
-	s.add_dependency 'bootstrap_form'
 	s.add_dependency 'nested_form'
 
 	s.add_runtime_dependency('statistics2')

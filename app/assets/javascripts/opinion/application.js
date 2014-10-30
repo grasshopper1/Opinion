@@ -11,6 +11,6 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require jquery_nested_form
-//= require bootstrap/bootstrap
 //= require_tree .

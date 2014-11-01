@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 	s.test_files = Dir['test/**/*']
 	s.require_paths = ['lib']
 
-	s.add_dependency 'rails', '~> 4.0.3'
+	s.add_dependency 'rails'
 	s.add_dependency 'nested_form'
 
 	s.add_runtime_dependency('statistics2')

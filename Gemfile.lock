@@ -3,7 +3,7 @@ PATH
   specs:
     opinion (0.0.1)
       nested_form
-      rails (~> 4.0.3)
+      rails
       statistics2
 
 GEM

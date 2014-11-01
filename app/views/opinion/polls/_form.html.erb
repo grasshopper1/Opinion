@@ -6,7 +6,7 @@
   <div class="fields">
     <%= poll_form.label :question %>
     <%= poll_form.text_field :question %>
-  <div>
+  </div>
   <%= poll_form.fields_for(:options) do |option_form| %>
     <%= option_form.label 'Option' %>
     <%= option_form.text_field :description %>

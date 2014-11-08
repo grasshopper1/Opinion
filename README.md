@@ -24,14 +24,14 @@ To use opinion in your rails application you need to follow these steps:
 
 To be able to use opinion in controllers in the rails application, you can
 
-1. Add functionality to complete application.
+ * Add functionality to complete application.
 
     ```ruby
     # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
     Opinion.configure
     ```
 
-2. Add functionality to required controllers.
+ * Add functionality to required controllers.
 
     ```ruby
     # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
@@ -45,9 +45,9 @@ To be able to use opinion in controllers in the rails application, you can
 
 ##### Option user\_getter.
 
-This option is used to specify which object is used to get the user object in the application, most likely and default it is :current_user.
+This option is used to specify which object is used to get the user object in the application, most likely and default it is :current\_user. 
 
-In this example the method current_client will be used to retrieve the user (client) object.
+In this example the method current\_client will be used to retrieve the user (client) object.
 
     ```ruby
     Opinion.configure.do |config|

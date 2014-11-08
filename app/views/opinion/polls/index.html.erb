@@ -1,28 +1,13 @@
-<h1>Listing polls</h1>
+<% if @polls.empty? %>
+  <h1>No Polls defined</h1>
+<% else %>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>View</th>
-      <th>Question</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <% # pass items as objects, collections will iterate, which is controlled in the partial (for now) %>
+  <%= render partial: 'active', object: @polls.active %>
+  <%= render partial: 'pending', object: @polls.pending %>
+  <%= render partial: 'ended', object: @polls.ended %>
 
-  <tbody>
-    <% @polls.each do |poll| %>
-      <tr>
-        <td><%= poll.view %></td>
-        <td><%= poll.question %></td>
-        <td><%= link_to 'Show', poll %></td>
-        <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
-        <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% end %>
 
 <br>
 

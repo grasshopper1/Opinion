@@ -1,0 +1,9 @@
+<h1><%= poll.question %></h1>
+<% # opinion.routes.as_json %>
+<%= form_for([opinion,poll], url: opinion.vote_up_poll_path(poll), method: :post) do |form| %>
+  <% poll.options.each do |option| %>
+    <%= radio_button_tag('voted_option', option.id) %>
+    <%= option.description %> <BR>
+  <% end %>
+  <%= form.submit %>
+<% end %>

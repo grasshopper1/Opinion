@@ -1,0 +1,42 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th></th> <!-- show-header -->
+      <% if show_edit?(state) %>
+      <th></th> <!-- edit-header -->
+      <% end %>
+      <% if show_activate?(state) %>
+      <th></th> <!-- activate-header -->
+      <% end %>
+      <th></th> <!-- end- or destroy-header -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% polls.each do |poll| %>
+      <tr>
+        <td><%= poll.question %></td>
+        <td><%= link_to 'Show', poll %></td>
+        <td>
+        <% if show_edit?(state,poll) %>
+          <%= link_to 'Edit', edit_poll_path(poll) %>
+        <% end %>
+        </td>
+        <% if show_activate?(state) %>
+        <td>
+          <%= link_to 'Activate', opinion.activate_poll_path(poll), method: :post, data: { confirm: 'Are you sure you want to activate the poll?' } %>
+        </td>
+        <% end %>
+        <td>
+        <% if state == 'active' %>
+          <%= link_to 'End', opinion.end_poll_path(poll), method: :post, data: { confirm: 'Are you sure you want to end the poll?' } %>
+        <% else %>
+          <%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure you want to destroy the poll?' } %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

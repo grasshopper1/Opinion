@@ -1,0 +1,32 @@
+<h1>Active poll</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th></th> <!-- show-header -->
+      <% if show_edit?(active) %>
+      <th></th> <!-- edit-header -->
+      <% end %>
+      <th></th> <!-- end-header -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% active.each do |poll| %>
+      <tr>
+        <td><%= poll.question %></td>
+        <td><%= link_to 'Show', poll %></td>
+        <% if show_edit?(active) %>
+        <td>
+        <% unless poll.voted? %>
+          <%= link_to 'Edit', edit_poll_path(poll) %>
+        <% end %>
+        </td>
+        <% end %>
+        <td><%= link_to 'End', opinion.end_poll_path(poll), method: :post, data: { confirm: 'Are you sure you want to end the poll?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,30 @@
+<h1>Pending polls</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th></th> <!-- show-header -->
+      <th></th> <!-- edit-header -->
+      <% if show_activate? %>
+      <th></th> <!-- activate-header -->
+      <% end %>
+      <th></th> <!-- end- or destroy-header -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% pending.each do |poll| %>
+      <tr>
+        <td><%= poll.question %></td>
+        <td><%= link_to 'Show', poll %></td>
+        <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
+        <% if show_activate? %>
+        <td><%= link_to 'Activate', opinion.activate_poll_path(poll), method: :post, data: { confirm: 'Are you sure you want to activate the poll?' } %></td>
+        <% end %>
+        <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure you want to destroy the poll?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

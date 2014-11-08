@@ -1,0 +1,22 @@
+<h1>Ended polls</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th></th> <!-- show-header -->
+      <th></th> <!-- destroy-header -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% ended.each do |poll| %>
+      <tr>
+        <td><%= poll.question %></td>
+        <td><%= link_to 'Show', poll %></td>
+        <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure you want to destroy the poll?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

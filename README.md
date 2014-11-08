@@ -10,15 +10,15 @@ To use opinion in your rails application you need to follow these steps:
 
  * Add initializer
 
-    ```ruby
-    Rails.application.config.to_prepare do
-      # If you want to change the layout that Opinion uses, uncomment and customize the next line:
-      # Opinion::ApplicationController.layout 'application'
-    end
+        ```ruby
+        Rails.application.config.to_prepare do
+          # If you want to change the layout that Opinion uses, uncomment and customize the next line:
+          # Opinion::ApplicationController.layout 'application'
+        end
 
-    # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
-    Opinion.configure
-    ```
+        # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
+        Opinion.configure
+        ```
 
 ##### Option helpers\_to\_application.
 
@@ -26,26 +26,26 @@ To be able to use opinion in controllers in the rails application, you can
 
  * Add functionality to complete application.
 
-    ```ruby
-    # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
-    Opinion.configure
-    ```
+        ```ruby
+        # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
+        Opinion.configure
+        ```
 
  * Add functionality to required controllers.
 
-    ```ruby
-    # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
-    Opinion.configure.do |config|
-      config.helpers_to_application = false
-    end
+        ```ruby
+        # Adds Opinion functionality to application controller, can be disabled using helpers_to_application configuration option. 
+        Opinion.configure.do |config|
+          config.helpers_to_application = false
+        end
 
-    # Adds Opinion functionality to WelcomeController and SignOutController.
-    Opinion.opinion_for :welcome, :sign_out
-    ```
+        # Adds Opinion functionality to WelcomeController and SignOutController.
+        Opinion.opinion_for :welcome, :sign_out
+        ```
 
 ##### Option user\_getter.
 
-This option is used to specify which object is used to get the user object in the application, most likely and default it is :current\_user. 
+This option is used to specify which object is used to get the user object in the application, most likely and default it is :current\_user.
 
 In this example the method current\_client will be used to retrieve the user (client) object.
 
@@ -67,7 +67,6 @@ be activated when no active polls exists when the option is disabled. By default
       config.end_poll_on_activate = true
     end
     ```
-
 
 Opinion can be used with- or without bootstrap.
 

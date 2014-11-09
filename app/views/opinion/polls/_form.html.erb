@@ -6,6 +6,7 @@
   <%= poll_form.fields_for(:options) do |option_form| %>
     <%= option_form.label 'Option' %>
     <%= option_form.text_field :description %>
+    <%= option_form.link_to_remove 'Remove this option' %>
   <% end %>
   <%= poll_form.link_to_add 'Add option', :options %>
   <div class="fields">

@@ -7,9 +7,7 @@
     <%= option_form.label 'Option' %>
     <%= option_form.text_field :description %>
   <% end %>
-  <div class="fields">
-    <%= poll_form.link_to_add 'Add option', :options %>
-  </div>
+  <%= poll_form.link_to_add 'Add option', :options %>
   <div class="fields">
     <%= poll_form.submit %>
   </div>

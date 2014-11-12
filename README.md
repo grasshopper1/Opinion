@@ -94,7 +94,7 @@ The Google-charts API and Highcharts cannot be used mixed together.
 
 ##### Highcharts
 
- * To use highcharts(www.highcharts.com) which is not included in this gem, download the js and add it in the applications directory of your rails app. Than make sure the configuration is set correctly. By using
+ * To use [highcharts](www.highcharts.com) which is not included in this gem, download the js and add it in the applications directory of your rails app. Than make sure the configuration is set correctly. By using
 
     ```ruby
     Opinion.configure do |config|

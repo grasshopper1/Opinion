@@ -1,15 +1,14 @@
-<p>
-  <strong>Question:</strong>
-  <%= @poll.question %>
-</p>
-
-<div class="options">
-  <% @poll.options.each do |option| %>
-    <p>
-      <strong>Option:</strong>
-      <%= option.description %>
-      &nbsp;(<%= option.plusminus %>)
-    </p>
+<div id="votes">
+  <% if @poll.voted? %>
+    <% if Opinion.configuration.charts_engine == :highcharts %>
+      <%= pie_chart @poll.options_chart_data, library: {title: {text: @poll.question} } %>
+    <% elsif Opinion.configuration.charts_engine == :google_charts %>
+      <%= pie_chart @poll.options_chart_data, library: {title: @poll.question} %>
+    <% else %>
+      <h3>Chart Engine <%= Opinion.configuration.charts_engine.inspect %> is not supported</h3>
+    <% end %>
+  <% else %>
+    <h3>No votes for poll exists</h3>
   <% end %>
 </div>
 

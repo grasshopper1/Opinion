@@ -30,6 +30,8 @@ module Opinion
 			if configuration.helpers_to_application
 				opinion_for :application
 			end
+			# Load initializers
+			require 'opinion/chartkick'
 		end
 
 		# The configuration object.

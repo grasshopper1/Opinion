@@ -4,6 +4,7 @@
   <title>Opinion</title>
   <%= stylesheet_link_tag    'opinion/application', media: 'all' %>
   <%= javascript_include_tag 'opinion/application' %>
+  <%= javascript_include_tag Opinion.configuration.charts_engine_location, 'chartkick' %>
   <%= csrf_meta_tags %>
 </head>
 <body>

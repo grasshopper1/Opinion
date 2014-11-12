@@ -36,5 +36,10 @@ module Opinion
 		def voted?
 			options.map { |option| option.votes_for }.inject(:+) > 0
 		end
+
+		# TODO Comment me.
+		def options_chart_data
+			Hash[options.map { |option| [option.description, option.votes_for]}]
+		end
 	end
 end

@@ -4,6 +4,8 @@ This project rocks and uses MIT-LICENSE.
 
 #### Usage
 
+First of all. Be aware that this gem is known broken in production-mode.
+
 ##### Configuring Opinion
 
 To use opinion in your rails application you need to follow these steps:
@@ -71,6 +73,37 @@ be activated when no active polls exists when the option is disabled. By default
     ```
 
 Opinion can be used with- or without bootstrap.
+
+#### Showing votes
+
+By default a pie chart using the google-api is used to show votes. This can be overridden using the options:
+
+ * charts_engine
+ * charts_engine_location
+
+The option charts\_engine is used to specify the engine to use, :google_charts and :highcharts are supported. 
+The Google-charts API and Highcharts cannot be used mixed together.
+
+##### Google-charts API
+
+To use the google-charts API in a different layout as the default layout, you must include the following code in the layout file.
+
+    ```ruby
+    <%= javascript_include_tag '//www.google.com/jsapi', 'chartkick' %>
+    ```
+
+##### Highcharts
+
+To use highcharts(www.highcharts.com) which is not included in this gem, download the js and add it in the applications directory of your rails app.
+Than make sure the configuration is set correctly. By using:
+
+    ```ruby
+    Opinion.configure do |config|
+      config.charts_engine = :highcharts
+      # This will find highcharts-all.js in app/assets/javascripts/
+      config.charts_engine_location = 'highcharts-all.js'
+    end
+    ```
 
 #### Without bootstrap
 

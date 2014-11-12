@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
 	s.require_paths = ['lib']
 
 	s.add_dependency 'rails'
-	s.add_dependency 'nested_form'
+	s.add_dependency 'chartkick'
+	s.add_dependency 'gruff'
 
 	s.add_runtime_dependency('statistics2')
 	s.add_development_dependency('simplecov')

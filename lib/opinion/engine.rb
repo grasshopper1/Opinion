@@ -4,7 +4,7 @@ module Opinion
 
 		isolate_namespace Opinion
 
-		['nested_form','jquery-rails'].each do |gem|
+		['nested_form','jquery-rails','chartkick'].each do |gem|
 			begin
 				require gem
 			rescue LoadError

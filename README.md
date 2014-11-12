@@ -86,7 +86,7 @@ The Google-charts API and Highcharts cannot be used mixed together.
 
 ##### Google-charts API
 
-To use the google-charts API in a different layout as the default layout, you must include the following code in the layout file.
+ * To use the google-charts API in a different layout as the default layout, include the following code in the layout file, by using
 
     ```ruby
     <%= javascript_include_tag '//www.google.com/jsapi', 'chartkick' %>
@@ -94,8 +94,7 @@ To use the google-charts API in a different layout as the default layout, you mu
 
 ##### Highcharts
 
-To use highcharts(www.highcharts.com) which is not included in this gem, download the js and add it in the applications directory of your rails app.
-Than make sure the configuration is set correctly. By using:
+ * To use highcharts(www.highcharts.com) which is not included in this gem, download the js and add it in the applications directory of your rails app. Than make sure the configuration is set correctly. By using
 
     ```ruby
     Opinion.configure do |config|

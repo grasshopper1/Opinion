@@ -65,7 +65,7 @@ module Opinion
 			@poll.state = 'ended'
 
 			if @poll.save
-				redirect_to @poll, notice: 'Poll was successfully ended.'
+				redirect_to polls_url, notice: 'Poll was successfully ended.'
 			else
 				redirect_to polls_url, alert: 'Unable to end poll.'
 			end

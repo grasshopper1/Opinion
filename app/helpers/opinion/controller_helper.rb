@@ -29,7 +29,8 @@ module Opinion
 				poll = Opinion::Poll.active.first
 
 				unless poll.voted_by?(opinion_user)
-					render poll, :locals => {:poll => poll}
+					# TODO Make modal configurable, maybe someone doesn't like pop-ups.
+					render :file => 'opinion/polls/_poll_modal.html.erb', :locals => {:poll => poll}
 				end
 			end
 		end

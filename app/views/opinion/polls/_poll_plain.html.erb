@@ -1,0 +1,9 @@
+<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
+<div class="opinion-body">
+  <div class="opinion-label">
+    <h4>Please Vote</h4>
+  </div>
+  <h3 class="text-left"><%= poll.question %></h3>
+  <%= render :file => 'opinion/polls/_poll_opinion_form', locals: {:poll => poll, modal: false} %>
+</div>
+

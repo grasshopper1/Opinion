@@ -1,0 +1,17 @@
+<%# Conditionally set remote: true. Also, passing poll object as data attribute %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for([opinion,poll], url: opinion.vote_up_poll_path(poll), remote: remote, html:{role: :opinion_form, 'data-model' => 'poll'}, method: :post) do |form| %>
+  <% poll.options.each do |option| %>
+    <div class="radio">
+      <label><input type="radio" id="voted_option_<%= option.id %>" name="voted_option" value="<%=option.id%>"><%= option.description %></label>
+    </div>
+  <% end %>
+
+  <%# Only show submit button in form when it is not for the modal partial, which has it's own submit buttons %>
+  <% unless modal %>
+    <div class="actions">
+      <%= form.submit 'Vote', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% end %>

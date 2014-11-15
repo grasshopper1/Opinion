@@ -1,0 +1,20 @@
+<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
+<div class="modal" id="new_opinion_poll_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-target=".bs-example-modal-sm" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Please Vote</h4>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center"><%= poll.question %></h3>
+        <%# Render the new person form (passing modal => true to enable remote => true) %>
+        <%= render :file => 'opinion/polls/_poll_opinion_form', locals: {:poll => poll, modal: true} %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="vote">Vote</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

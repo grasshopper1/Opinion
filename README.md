@@ -10,6 +10,13 @@ First of all. Be aware that this gem is known broken in production-mode.
 
 To use opinion in your rails application you need to follow these steps:
 
+Add javascript to application.js
+
+```js
+//= require opinion/polls
+```
+
+
  * Add initializer
 
     ```ruby

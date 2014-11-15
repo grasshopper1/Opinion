@@ -10,12 +10,19 @@ First of all. Be aware that this gem is known broken in production-mode.
 
 To use opinion in your rails application you need to follow these steps:
 
-Add javascript to application.js
+Add bootstrap and other assets to application.
 
 ```js
 //= require opinion/polls
+//= require bootstrap-sprockets
 ```
 
+Add bootstrap css files to your application.css.scss like the bootstrap-sass gem guides you to.
+
+```css
+@import "bootstrap-sprockets";
+@import "bootstrap";
+```
 
  * Add initializer
 

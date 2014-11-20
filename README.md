@@ -4,7 +4,7 @@ This project rocks and uses MIT-LICENSE.
 
 #### Usage
 
-First of all. Be aware that this gem is known broken in production-mode.
+This gem is used to obtain opinions of users of a rails application.
 
 ##### Configuring Opinion
 
@@ -147,6 +147,14 @@ The following vote later types exists:
  * never
  
  Never use waiting time.
+
+### Production mode
+
+To use opinion in production-mode, set serving static to true by
+
+```ruby
+config.serve_static_assets = true
+```
 
 #### Without bootstrap
 

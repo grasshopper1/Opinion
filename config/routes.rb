@@ -10,6 +10,11 @@ Opinion::Engine.routes.draw do
 			post :end
 			post :activate
 		end
+		collection do
+			post :add_waiting_time
+			get :waiting_times
+		end
 	end
+
 	root 'polls#index'
 end

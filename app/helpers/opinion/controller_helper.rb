@@ -22,7 +22,9 @@ module Opinion
 			Rails.logger.debug { "Other options: #{options.inspect}" }
 			Rails.logger.debug { "opinion_user: #{opinion_user.inspect}" }
 
-			if Opinion::Poll.active.empty?
+			if waiting_time.nil? || waiting_time - Time.now > 0
+				render text: ''
+			elsif Opinion::Poll.active.empty?
 				# TODO perhaps show whiny text when no active poll is seen / make this configurable
 				render text: ''
 			else
@@ -32,6 +34,39 @@ module Opinion
 					# TODO Make modal configurable, maybe someone doesn't like pop-ups.
 					render :file => 'opinion/polls/_poll_modal.html.erb', :locals => {:poll => poll}
 				end
+			end
+		end
+
+		# @return [Time,nil]
+		def waiting_time
+			Rails.logger.debug { "retrieving waiting time for user #{opinion_user.inspect}" }
+			session[:waiting_times] ||= {}
+			if opinion_user && session[:waiting_times][opinion_user.id]
+				if session[:waiting_times][opinion_user.id].instance_of?(Time)
+					return session[:waiting_times][opinion_user.id]
+				else
+					Rails.logger.warn { "deleting current session value #{session[:waiting_times][opinion_user.id]} because it is not a Time" }
+					session[:waiting_times].delete(opinion_user)
+				end
+			end
+			return nil
+		end
+
+		# TODO Comment me
+		def modal_tag(identifier, *args, &block)
+			options = args.extract_options!.symbolize_keys
+
+			options.merge!(:class => 'modal', :id => identifier.to_s)
+			content_tag(:div, options, &block)
+		end
+
+		# TODO Comment me
+		def vote_later_button(text)
+			return unless Opinion.configuration.vote_later_type == :enable
+
+			# <button type="button" class="btn btn-default" id="vote_later">Vote later</button>
+			content_tag(:button, :class => 'btn btn-default', :id => 'vote_later') do
+				text
 			end
 		end
 	end

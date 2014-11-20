@@ -15,6 +15,9 @@ module Opinion
 		scope :pending, -> { where state: 'pending' }
 		scope :ended,  -> { where state: 'ended' }
 
+		# Needed for hidden field helper.
+		attr_accessor :voted
+
 		# TODO Comment me.
 		def at_least_two_options
 			if options.size < 2

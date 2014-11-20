@@ -46,6 +46,7 @@ module Opinion
 
 		# PATCH/PUT /polls/1
 		def update
+			# TODO Fix bug; Removing of options fails.
 			if @poll.update(poll_params)
 				redirect_to @poll, notice: 'Poll was successfully updated.'
 			else
@@ -105,6 +106,49 @@ module Opinion
 				Rails.logger.info { 'Not yet voted by user' }
 				option = Opinion::Option.find(params[:voted_option])
 				redirect_to opinion.vote_up_poll_option_url(@poll,option), :method => :post
+			end
+		end
+
+		def add_waiting_time
+			Rails.logger.debug { 'add_waiting_time called!' }
+			Rails.logger.debug { "seen waiting times: #{session[:waiting_times].inspect}"}
+
+			respond_to do |format|
+				format.json do
+					ttl = 90
+					date_time = Time.now + ttl
+					current_waiting_time = waiting_time
+					if current_waiting_time.nil?
+						session[:waiting_times] ||= {}
+						session[:waiting_times][opinion_user.id] = date_time
+						Rails.logger.debug { "setting waiting time to: #{date_time}" }
+					else
+						Rails.logger.debug { "retrieved date time: #{current_waiting_time} (#{current_waiting_time.class}) from session" }
+						if current_waiting_time - date_time > 0
+							Rails.logger.debug { 'not setting new ttl, because old ttl is greater than new ttl' }
+						else
+							Rails.logger.debug { "setting waiting time to: #{date_time}" }
+							session[:waiting_times][opinion_user.id] = date_time
+						end
+					end
+					render :json => {}.as_json
+				end
+			end
+		end
+
+		def waiting_times
+			respond_to do |format|
+				format.json do
+					# Waiting times with time as an unix-timestamp integer.
+					waiting_times_hash = Hash[session[:waiting_times].map { |id,waiting_time| [id,waiting_time.to_time.to_i] }]
+					now = Time.now.to_i
+					waiting_times_diffs = Hash[waiting_times_hash.map { |id,waiting_time_int| [id,waiting_time_int - now] }]
+					if opinion_user
+						render :json => waiting_times_diffs[opinion_user.id]
+					else
+						render :json => waiting_times_diffs.as_json
+					end
+				end
 			end
 		end
 

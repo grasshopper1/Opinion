@@ -118,6 +118,36 @@ The Google-charts API and Highcharts cannot be used mixed together.
     end
     ```
 
+### Showing opinion-panel
+
+The opinion-panel, used to vote, can be shown every once in a while, which can be more convenient for the user. 
+
+To do this use the following config:
+ 
+```ruby
+Opinion.configure do |config|
+  # Default = :enable
+  config.vote_later_type = :on_close
+  config.vote_later_wait = 300 # 300 seconds = 5 minutes
+end
+```
+
+#### Vote later types
+
+The following vote later types exists:
+
+ * enable
+ 
+ Enables 'Vote Later' button, which is only used to set waiting time (vote_later_wait), the other close options are not setting the wait.
+ 
+ * on_close
+ 
+ Enables waiting time for every available close option. No 'Vote Later' button will be added.
+ 
+ * never
+ 
+ Never use waiting time.
+
 #### Without bootstrap
 
 ##### Using different layout.

@@ -1,7 +1,8 @@
 <%# Conditionally set remote: true. Also, passing poll object as data attribute %>
 <% modal ||= false %>
 <% remote = modal ? true : false %>
-<%= form_for([opinion,poll], url: opinion.vote_up_poll_path(poll), remote: remote, html:{role: :opinion_form, 'data-model' => 'poll'}, method: :post) do |form| %>
+<%= form_for([opinion,poll], url: opinion.vote_up_poll_path(poll), 'data' => {'config' => Opinion.configuration.to_hash.stringify_keys}, remote: remote, html:{role: :opinion_form, 'data-model' => 'poll'}, method: :post) do |form| %>
+  <%= form.hidden_field :voted %>
   <% poll.options.each do |option| %>
     <div class="radio">
       <label><input type="radio" id="voted_option_<%= option.id %>" name="voted_option" value="<%=option.id%>"><%= option.description %></label>

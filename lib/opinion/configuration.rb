@@ -2,7 +2,7 @@ module Opinion
 	class Configuration
 
 		OPTIONS = [:voteable_relationship_name, :voter_relationship_name, :helpers_to_application, :user_getter, :end_poll_on_activate,
-		           :charts_engine].freeze
+		           :charts_engine, :vote_later_type, :vote_later_wait].freeze
 
 		# Specify the name of the relationship from voted on things to voters.
 		# Default is votes
@@ -35,6 +35,16 @@ module Opinion
 		# TODO Add description
 		attr_accessor :charts_engine_location
 
+		# TODO Add description
+		# Available options:
+		# * :never
+		# * :enable
+		# * :on_close
+		attr_accessor :vote_later_type
+
+		# Number of seconds to wait before showing vote dialog again (after a page-refresh)
+		attr_accessor :vote_later_wait
+
 		def initialize
 			# these defaults can be overridden in the ThumbsUp.config block
 			@voteable_relationship_name    = :votes
@@ -44,6 +54,8 @@ module Opinion
 			@end_poll_on_activate          = false
 			@charts_engine                 = :google_charts
 			@charts_engine_location        = '//www.google.com/jsapi'
+			@vote_later_type               = :enable
+			@vote_later_wait               = 3600
 		end
 
 		# Allows config options to be read like a hash

@@ -115,8 +115,7 @@ module Opinion
 
 			respond_to do |format|
 				format.json do
-					ttl = 90
-					date_time = Time.now + ttl
+					date_time = Time.now + Opinion.configuration.vote_later_wait.to_i
 					current_waiting_time = waiting_time
 					if current_waiting_time.nil?
 						session[:waiting_times] ||= {}

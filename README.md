@@ -6,6 +6,23 @@ This project rocks and uses MIT-LICENSE.
 
 This gem is used to obtain opinions of users of a rails application.
 
+##### Configure User object
+
+Opinions can be obtained be users authenticated using devise, but other solutions can also be used.
+
+To configure the main user object for opinion, add 'act_as_voter' in it's class. In the following example we use a devise generated object for voting.
+
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  acts_as_voter
+end
+```
+
 ##### Configuring Opinion
 
 To use opinion in your rails application you need to follow these steps:

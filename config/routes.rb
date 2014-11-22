@@ -13,6 +13,7 @@ Opinion::Engine.routes.draw do
 		collection do
 			post :add_waiting_time
 			get :waiting_times
+			get :show_poll
 		end
 	end
 

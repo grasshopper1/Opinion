@@ -149,6 +149,30 @@ Opinion.configure do |config|
 end
 ```
 
+Another option to show the opinion-panel not instantly for example can be achieved by overriding the method opinion_show_poll?.
+
+The method opinion_show_poll? is used to check whether to show the opinion-panel.
+
+For example: Add the following to the opinion initializer. 
+
+```
+Opinion::ControllerHelper.class_eval do
+	# Whether the poll should be displayed.
+	#
+	# @return [Boolean] Whether the poll should be displayed.
+	def opinion_show_poll?
+		begin
+			unless opinion_user.nil?
+				# devise user needs to be trackable
+				return opinion_user.sign_in_count > 1 || opinion_user.last_sign_in_at + 300.seconds < Time.zone.now
+			end
+		rescue NoMethodError
+			false
+		end
+	end
+end
+```
+
 #### Vote later types
 
 The following vote later types exists:

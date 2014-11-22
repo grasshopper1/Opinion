@@ -1,17 +1,27 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(window).load(function () {
+    show_poll(function (show) {
+        if (show == true) {
+            process_modal();
+        }
+    });
+});
+
+// TODO Comment me
+function process_modal() {
     // shows poll on load.
-    $('#new_opinion_poll_modal').modal('show');
+    var opinion_poll_modal = $('#new_opinion_poll_modal');
+    opinion_poll_modal.modal('show');
 
     // add logic to hide event of modal.
-    $('#new_opinion_poll_modal').on('hide.bs.modal', function () {
+    opinion_poll_modal.on('hide.bs.modal', function () {
         // exists and .val = 'voted' when Vote button has been pressed.
         var voted_element = $('#poll_voter');
         // vote later element length = 1 means vote later button exists this can be double checked using the config
         var vote_later_element = $('button#vote_later');
         // retrieve config, refactor to function.
-        var config = get_config();
+        var config = get_config(opinion_poll_modal);
         get_waiting_time(function (waiting_time) {
             if (vote_later_element.length == 0 && // no vote later button exists
                 voted_element.val() != 'voted' && // there has not been voted
@@ -22,7 +32,7 @@ $(window).load(function () {
             }
         });
     });
-});
+}
 
 // action used for voting.
 $(function () {
@@ -37,7 +47,13 @@ $(function () {
                 $("#new_opinion_poll_modal").modal('hide');
             },
             error: function () {
-                alert('something went wrong')
+                if (!(event.status == 401 && event.statusText == 'Unauthorized '))
+                {
+                    alert('need to be signed in to be able to vote');
+                }
+                else {
+                    alert('error seen in request ' + form.attr('action'));
+                }
             }
         });
     });
@@ -67,8 +83,42 @@ function get_waiting_time(func) {
                 func.call(this, data);
             }
         },
-        error: function () {
-            alert('error seen in request of waiting-times');
+        error: function (event) {
+            if (!(event.status == 401 && event.statusText == 'Unauthorized '))
+            {
+                alert('need to be signed in to get_waiting_time');
+            }
+            else {
+                alert('error seen in request of waiting-times');
+            }
+            if (func) {
+                func.call(this, null);
+            }
+        }
+    });
+}
+
+// Get whether to show polls.
+// needs a function, because it might / 'probably will not' return before the function ajax requests is finished.
+// function retrieves an null object when an error is seen in the request. for now we alert an message that an error is seen.
+// function retrieves a data object when the get finishes executing.
+function show_poll(func) {
+    $.ajax({
+        type: "GET",
+        url: "/polls/polls/show_poll.json",
+        ContentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+            if (func) {
+                func.call(this, data);
+            }
+        },
+        error: function (event) {
+            // Show error when signed in (by devise) and error is seen.
+            if (!(event.status == 401 && event.statusText == 'Unauthorized '))
+            {
+                alert('error seen in request of show_poll');
+            }
             if (func) {
                 func.call(this, null);
             }
@@ -78,8 +128,8 @@ function get_waiting_time(func) {
 
 // retrieve config.
 // TODO config is stored in modal or plain div, this is very ugly.
-function get_config() {
-    var modal = $('#new_opinion_poll_modal');
+// @param modal Result of jquery selector for new_opinion_poll_modal.
+function get_config(modal) {
     if (modal.length) {
         return modal.data('config');
     }
@@ -106,8 +156,14 @@ function add_waiting_time(func) {
                 modal.modal('hide');
             }
         },
-        error: function () {
-            alert('something went wrong in calling add_waiting_time');
+        error: function (event) {
+            if (!(event.status == 401 && event.statusText == 'Unauthorized '))
+            {
+                alert('need to be signed in to add_waiting_time');
+            }
+            else {
+                alert('something went wrong in calling add_waiting_time');
+            }
         }
     });
 }

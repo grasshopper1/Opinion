@@ -17,12 +17,14 @@ module Opinion
 		def opinion_poll(*args)
 			options = args.extract_options!.symbolize_keys
 			poll_identifier = args.pop
+			waiting_time = waiting_time()
 
 			Rails.logger.debug { "Poll identifier: #{poll_identifier.inspect}" }
 			Rails.logger.debug { "Other options: #{options.inspect}" }
 			Rails.logger.debug { "opinion_user: #{opinion_user.inspect}" }
+			Rails.logger.debug { "waiting-time: #{waiting_time.inspect}" }
 
-			if waiting_time.nil? || waiting_time - Time.now > 0
+			if !waiting_time.nil? && waiting_time - Time.now > 0
 				render text: ''
 			elsif Opinion::Poll.active.empty?
 				# TODO perhaps show whiny text when no active poll is seen / make this configurable
@@ -67,6 +69,17 @@ module Opinion
 			# <button type="button" class="btn btn-default" id="vote_later">Vote later</button>
 			content_tag(:button, :class => 'btn btn-default', :id => 'vote_later') do
 				text
+			end
+		end
+
+		# Whether the poll should be displayed.
+		#
+		# @return [Boolean] Whether the poll should be displayed.
+		def opinion_show_poll?
+			begin
+				!opinion_user.nil?
+			rescue NoMethodError
+				false
 			end
 		end
 	end

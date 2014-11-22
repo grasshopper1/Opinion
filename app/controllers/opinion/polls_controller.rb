@@ -151,6 +151,14 @@ module Opinion
 			end
 		end
 
+		def show_poll
+			respond_to do |format|
+				format.json do
+					render :json => opinion_show_poll?.as_json
+				end
+			end
+		end
+
 		private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_poll

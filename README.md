@@ -155,7 +155,7 @@ The method opinion_show_poll? is used to check whether to show the opinion-panel
 
 For example: Add the following to the opinion initializer. 
 
-```
+```ruby
 Opinion::ControllerHelper.class_eval do
 	# Whether the poll should be displayed.
 	#

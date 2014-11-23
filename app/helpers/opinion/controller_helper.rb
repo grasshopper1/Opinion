@@ -22,17 +22,20 @@ module Opinion
 			Rails.logger.debug { "Poll identifier: #{poll_identifier.inspect}" }
 			Rails.logger.debug { "Other options: #{options.inspect}" }
 			Rails.logger.debug { "opinion_user: #{opinion_user.inspect}" }
-			Rails.logger.debug { "waiting-time: #{waiting_time.inspect}" }
 
 			if !waiting_time.nil? && waiting_time - Time.now > 0
+				Rails.logger.info { "NOT showing opinion-poll, because waiting time #{waiting_time.inspect} has not elapsed." }
 				render text: ''
 			elsif Opinion::Poll.active.empty?
+				Rails.logger.info { 'NOT showing opinion-poll, because no active poll is available' }
 				# TODO perhaps show whiny text when no active poll is seen / make this configurable
 				render text: ''
 			else
 				poll = Opinion::Poll.active.first
 
-				unless poll.voted_by?(opinion_user)
+				if poll.voted_by?(opinion_user)
+					Rails.logger.info { 'NOT showing opinion-poll, because user already voted for poll' }
+				else
 					# TODO Make modal configurable, maybe someone doesn't like pop-ups.
 					render :file => 'opinion/polls/_poll_modal.html.erb', :locals => {:poll => poll}
 				end

@@ -1,10 +1,11 @@
 PATH
   remote: .
   specs:
-    opinion (0.4.0)
+    opinion (0.5.1)
       bootstrap-sass (~> 3.3.1)
       chartkick
       gruff
+      nested_form
       rails
       statistics2
 
@@ -60,6 +61,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.10.1)
     mysql2 (0.3.16)
+    nested_form (0.3.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
     rack (1.5.2)
@@ -82,7 +84,7 @@ GEM
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
     rmagick (2.13.3)
-    sass (3.4.7)
+    sass (3.4.8)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)

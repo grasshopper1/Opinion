@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 	s.add_dependency 'rails'
 	s.add_dependency 'chartkick'
 	s.add_dependency 'gruff'
+	s.add_dependency 'nested_form'
 	s.add_dependency 'bootstrap-sass', '~> 3.3.1'
 
 	s.add_runtime_dependency('statistics2')

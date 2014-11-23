@@ -1,17 +1,29 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-$(window).load(function () {
+// Logic used to determine if we need to show opinion-poll-panel and how to handle buttons clicked / actions executed on the panel.
+// TODO Make sure this works with the plain panel as well.
+
+// executed on page reload (F5)
+$(window).load(ready);
+
+// (turbo)-link clicked
+$(document).on('page:load', ready);
+
+function ready() {
     show_poll(function (show) {
+        // show_poll.json can be influenced that it only returns true in certain circumstances,
+        // be aware that this is just the first test of many :)
         if (show == true) {
-            process_modal();
+            var opinion_poll_modal = $('#new_opinion_poll_modal');
+            // just to be sure test that modal exists and is not visible.
+            if (opinion_poll_modal.length && $(opinion_poll_modal).css('display') == 'none') {
+                process_modal(opinion_poll_modal);
+            }
         }
     });
-});
+}
 
 // TODO Comment me
-function process_modal() {
+function process_modal(opinion_poll_modal) {
     // shows poll on load.
-    var opinion_poll_modal = $('#new_opinion_poll_modal');
     opinion_poll_modal.modal('show');
 
     // add logic to hide event of modal.

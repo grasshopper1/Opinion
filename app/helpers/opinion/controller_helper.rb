@@ -35,6 +35,7 @@ module Opinion
 
 				if poll.voted_by?(opinion_user)
 					Rails.logger.info { 'NOT showing opinion-poll, because user already voted for poll' }
+					render text: ''
 				else
 					# TODO Make modal configurable, maybe someone doesn't like pop-ups.
 					render :file => 'opinion/polls/_poll_modal.html.erb', :locals => {:poll => poll}

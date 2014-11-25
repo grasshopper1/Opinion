@@ -203,6 +203,14 @@ config.serve_static_assets = true
 
  * Add jquery\_nested\_form to javascript assets.
 
+##### Generate views
+
+To generate views which can be edited use the following generator:
+
+```shell
+rails generate opinion:views
+```
+
 ##### ThumbsUp tests (See thumbs\_up gem)
 
 Testing is a bit more than trivial now as our #tally and #plusminus\_tally queries don't function properly under SQLite. To set up for testing:

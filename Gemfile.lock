@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opinion (0.5.4)
+    opinion (0.6.0)
       bootstrap-sass (~> 3.3.1)
       chartkick
       gruff

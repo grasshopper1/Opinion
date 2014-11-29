@@ -8,6 +8,8 @@ $(window).load(ready);
 $(document).on('page:load', ready);
 
 function ready() {
+    add_vote_listener();
+
     show_poll(function (show) {
         // show_poll.json can be influenced that it only returns true in certain circumstances,
         // be aware that this is just the first test of many :)
@@ -47,7 +49,7 @@ function process_modal(opinion_poll_modal) {
 }
 
 // action used for voting.
-$(function () {
+function add_vote_listener() {
     $("button#vote").click(function () {
         var form = $('form.edit_poll');
         $.ajax({
@@ -69,7 +71,7 @@ $(function () {
             }
         });
     });
-});
+};
 
 // action used when 'vote later' button is pressed.
 $(function () {

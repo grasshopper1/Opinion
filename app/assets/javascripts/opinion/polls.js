@@ -9,6 +9,7 @@ $(document).on('page:load', ready);
 
 function ready() {
     add_vote_listener();
+    add_vote_later_listener();
 
     show_poll(function (show) {
         // show_poll.json can be influenced that it only returns true in certain circumstances,
@@ -74,12 +75,12 @@ function add_vote_listener() {
 };
 
 // action used when 'vote later' button is pressed.
-$(function () {
+function add_vote_later_listener() {
     $("button#vote_later").click(function () {
         $("#new_opinion_poll_modal").modal('hide');
         add_waiting_time();
     });
-});
+;
 
 // Get waiting time.
 // needs a function, because it might / 'probably will not' return before the function ajax requests is finished.

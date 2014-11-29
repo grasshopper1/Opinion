@@ -58,7 +58,7 @@ $(function () {
                 $('#poll_voted').val('voted');
                 $("#new_opinion_poll_modal").modal('hide');
             },
-            error: function () {
+            error: function (event) {
                 if (!(event.status == 401 && event.statusText == 'Unauthorized '))
                 {
                     alert('need to be signed in to be able to vote');

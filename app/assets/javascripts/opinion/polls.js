@@ -72,7 +72,7 @@ function add_vote_listener() {
             }
         });
     });
-};
+}
 
 // action used when 'vote later' button is pressed.
 function add_vote_later_listener() {
@@ -80,7 +80,7 @@ function add_vote_later_listener() {
         $("#new_opinion_poll_modal").modal('hide');
         add_waiting_time();
     });
-;
+}
 
 // Get waiting time.
 // needs a function, because it might / 'probably will not' return before the function ajax requests is finished.

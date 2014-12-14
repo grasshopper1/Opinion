@@ -22,7 +22,7 @@ module Opinion
 		# GET /polls/1/edit
 		def edit
 			if @poll.voted?
-				redirect_to polls_url, alert: 'Unable to edit poll which which has already voted for.'
+				redirect_to polls_url, alert: t('.already_voted')
 			end
 		end
 
@@ -38,7 +38,7 @@ module Opinion
 			end
 
 			if @poll.save
-				redirect_to @poll, notice: 'Poll was successfully created.'
+				redirect_to @poll, notice: t('.created')
 			else
 				render action: 'new'
 			end
@@ -48,7 +48,7 @@ module Opinion
 		def update
 			# TODO Fix bug; Removing of options fails.
 			if @poll.update(poll_params)
-				redirect_to @poll, notice: 'Poll was successfully updated.'
+				redirect_to @poll, notice: t('.updated')
 			else
 				render action: 'edit'
 			end
@@ -57,7 +57,7 @@ module Opinion
 		# DELETE /polls/1
 		def destroy
 			@poll.destroy
-			redirect_to polls_url, notice: 'Poll was successfully destroyed.'
+			redirect_to polls_url, notice: t('.destroyed')
 		end
 
 		# POST /polls/1/end
@@ -66,9 +66,9 @@ module Opinion
 			@poll.state = 'ended'
 
 			if @poll.save
-				redirect_to polls_url, notice: 'Poll was successfully ended.'
+				redirect_to polls_url, notice: t('.ended')
 			else
-				redirect_to polls_url, alert: 'Unable to end poll.'
+				redirect_to polls_url, alert: t('.not_ended')
 			end
 		end
 
@@ -77,7 +77,7 @@ module Opinion
 			set_poll
 
 			if !Opinion.configuration.end_poll_on_activate && !Opinion::Poll.active.empty?
-				redirect_to(polls_url, alert: 'Unable to end activated poll.') && return
+				redirect_to(polls_url, alert: t('.not_ended_activated')) && return
 			elsif !Opinion::Poll.active.empty?
 				# End active poll.
 				active_poll = Opinion::Poll.active.first
@@ -89,9 +89,9 @@ module Opinion
 			@poll.state = 'active'
 
 			if @poll.save
-				redirect_to polls_url, notice: 'Poll was successfully activated.'
+				redirect_to polls_url, notice: t('.activated')
 			else
-				redirect_to polls_url, notice: 'Unable to activate poll.'
+				redirect_to polls_url, notice: t('.not_actived')
 			end
 		end
 

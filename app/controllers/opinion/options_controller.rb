@@ -27,7 +27,7 @@ module Opinion
 			@option = Option.new(option_params)
 
 			if @option.save
-				redirect_to @option, notice: 'Option was successfully created.'
+				redirect_to @option, notice: t('.created')
 			else
 				render action: 'new'
 			end
@@ -36,7 +36,7 @@ module Opinion
 		# PATCH/PUT /options/1
 		def update
 			if @option.update(option_params)
-				redirect_to @option, notice: 'Option was successfully updated.'
+				redirect_to @option, notice: t('.updated')
 			else
 				render action: 'edit'
 			end
@@ -45,7 +45,7 @@ module Opinion
 		# DELETE /options/1
 		def destroy
 			@option.destroy
-			redirect_to options_url, notice: 'Option was successfully destroyed.'
+			redirect_to options_url, notice: t('.destroyed')
 		end
 
 		# GET options/1/vote_up.

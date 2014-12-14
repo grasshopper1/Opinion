@@ -21,7 +21,8 @@ module Opinion
 		# TODO Comment me.
 		def at_least_two_options
 			if options.size < 2
-				self.errors.add(:options, 'at least two must be defined')
+				self.errors.add(:options, t("activerecord.errors.models.#{Opinion::Option.model_name.i18n_key}.attributes.options.at_least_two",
+				                            default: 'at least two options must be defined'))
 			end
 		end
 

@@ -1,0 +1,66 @@
+en:
+  opinion:
+    polls:
+      index:
+        no_polls_defined: "No Polls defined"
+        new: "New Poll"
+      new:
+        new: "New Poll"
+      form:
+        create: "Create Poll"
+        edit: "Edit Poll"
+        add_option: "Add Option"
+        prohibited_from_saved:
+          one: "1 error prohibited this poll from being saved:"
+          other: "%{count} errors prohibited this poll from being saved:"
+      new_buttons:
+        back: "Back"
+      edit:
+        already_voted: "Unable to edit poll which which has already voted for"
+      create:
+        created: "Poll was successfully created"
+      update:
+        updated: "Poll was successfully updated"
+      destroy:
+        destroyed: "Poll was successfully destroyed"
+      end:
+        ended: "Poll was successfully ended"
+        not_ended: "Unable to end poll"
+      activate:
+        not_ended_activated: "Unable to end activated poll"
+        activated: "Poll was successfully activated"
+        not_activated: "Unable to activate poll"
+    options:
+      create:
+        created: "Option was successfully created"
+      update:
+        updated: "Option was successfully updated"
+      destroy:
+        destroyed: "Option was successfully destroyed"
+  activerecord:
+    attributes:
+      opinion/poll:
+        question: "Question"
+        option: "Option"
+        options: "Options"
+      opinion/poll/options:
+        description:
+          one: "Option description"
+          other: "Option descriptions"
+      opinion/option:
+        description: "Description"
+    errors:
+      models:
+        opinion/poll:
+          attributes:
+            question:
+              blank: "cannot be blank"
+            options:
+              at_least_two: "at least two should be defined"
+        opinion/option:
+          attributes:
+            description:
+              blank: "cannot be blank"
+            less_than_or_equal_to:
+              one: "One option should be defined"
+              other: "#{count} options should be defined"

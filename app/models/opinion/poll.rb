@@ -8,6 +8,7 @@ module Opinion
 
 		validates :options, :presence => true
 		validate :at_least_two_options
+		validate :unique_options
 
 		accepts_nested_attributes_for :options
 
@@ -23,6 +24,14 @@ module Opinion
 			if options.size < 2
 				self.errors.add(:options, I18n.t("activerecord.errors.models.#{Opinion::Poll.model_name.i18n_key}.attributes.options.at_least_two",
 				                            default: 'at least two options must be defined'))
+			end
+		end
+
+		# TODO Comment me.
+		def unique_options
+			unless options == options.uniq
+				self.errors.add(:options, I18n.t("activerecord.errors.models.#{Opinion::Poll.model_name.i18n_key}.attributes.options.unique",
+				                                 default: 'should be unique'))
 			end
 		end
 

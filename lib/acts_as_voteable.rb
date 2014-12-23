@@ -11,7 +11,7 @@ module Opinion
 				has_many Opinion.configuration[:voteable_relationship_name],
 				         :as => :voteable,
 				         :dependent => :destroy,
-				         :class_name => 'Vote'
+				         :class_name => 'Opinion::Vote'
 
 				include Opinion::ActsAsVoteable::InstanceMethods
 				extend  Opinion::ActsAsVoteable::SingletonMethods

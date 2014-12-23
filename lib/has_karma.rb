@@ -31,10 +31,10 @@ module Opinion #:nodoc:
 			def karma(options = {})
 				self.class.base_class.karmic_objects.collect do |object, attr|
 					v = object.where(["#{self.class.base_class.table_name}.#{self.class.base_class.primary_key} = ?", self.id])
-					v = v.joins("INNER JOIN #{Vote.table_name} ON #{Vote.table_name}.voteable_type = '#{object.to_s}' AND #{Vote.table_name}.voteable_id = #{object.table_name}.#{object.primary_key}")
+					v = v.joins("INNER JOIN #{Opinion::Vote.table_name} ON #{Opinion::Vote.table_name}.voteable_type = '#{object.to_s}' AND #{Opinion::Vote.table_name}.voteable_id = #{object.table_name}.#{object.primary_key}")
 					v = v.joins("INNER JOIN #{self.class.base_class.table_name} ON #{self.class.base_class.table_name}.#{self.class.base_class.primary_key} = #{object.table_name}.#{attr[0]}")
-					upvotes = v.where(["#{Vote.table_name}.vote = ?", true])
-					downvotes = v.where(["#{Vote.table_name}.vote = ?", false])
+					upvotes = v.where(["#{Opinion::Vote.table_name}.vote = ?", true])
+					downvotes = v.where(["#{Opinion::Vote.table_name}.vote = ?", false])
 					if attr[1].length == 1 # Only count upvotes, not downvotes.
 						(upvotes.count.to_f * attr[1].first).round
 					else

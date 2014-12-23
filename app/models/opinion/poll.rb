@@ -8,7 +8,7 @@ module Opinion
 
 		validates :options, :presence => true
 		validate :at_least_two_options
-		validate :unique_options
+		validate :unique_option_descriptions
 
 		accepts_nested_attributes_for :options
 
@@ -28,8 +28,8 @@ module Opinion
 		end
 
 		# TODO Comment me.
-		def unique_options
-			unless options == options.uniq
+		def unique_option_descriptions
+			unless options.map { |option| option.description } == options.map { |option| option.description }.uniq
 				self.errors.add(:options, I18n.t("activerecord.errors.models.#{Opinion::Poll.model_name.i18n_key}.attributes.options.unique",
 				                                 default: 'should be unique'))
 			end

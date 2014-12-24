@@ -10,7 +10,7 @@ module Opinion
 		validate :at_least_two_options
 		validate :unique_option_descriptions
 
-		accepts_nested_attributes_for :options
+		accepts_nested_attributes_for :options, :allow_destroy => true
 
 		scope :active, -> { where state: 'active' }
 		scope :pending, -> { where state: 'pending' }

@@ -46,8 +46,7 @@ module Opinion
 
 		# PATCH/PUT /polls/1
 		def update
-			# TODO Fix bug; Removing of options fails.
-			if @poll.update(poll_params)
+			if @poll.update(reset_destroy(poll_params))
 				redirect_to @poll, notice: t('.updated')
 			else
 				render action: 'edit'
@@ -168,6 +167,27 @@ module Opinion
 		# Only allow a trusted parameter "white list" through.
 		def poll_params
 			params.require(:poll).permit(:question, options_attributes: [:id, :description, :_destroy])
+		end
+
+		# Used to process params after an update action fails,
+		# To remove an option the _destroy key with value '1' is supplied.
+		# If after an failed update because of a destroy too many,
+		# the _destroy key is supplied with the value 'true', this method resets the value to 'false'.
+		#
+		# @param [ActionController::Parameters] params Parameters supplied to the update action.
+		#
+		# @return [ActionController::Parameters] Updated parameters.
+		def reset_destroy(params)
+			Hash[params.map do |l1_key, l1_val|
+				Rails.logger.debug { "Seen: #{l1_key} -> #{l1_val} (#{l1_val.class})"}
+				if l1_val.instance_of?(ActionController::Parameters)
+					[l1_key, updated_params(l1_val)]
+				elsif l1_key == '_destroy' && l1_val == 'true'
+					[l1_key, 'false']
+				else
+					[l1_key, l1_val]
+				end
+			end]
 		end
 	end
 end

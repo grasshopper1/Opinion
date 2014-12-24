@@ -181,7 +181,7 @@ module Opinion
 			Hash[params.map do |l1_key, l1_val|
 				Rails.logger.debug { "Seen: #{l1_key} -> #{l1_val} (#{l1_val.class})"}
 				if l1_val.instance_of?(ActionController::Parameters)
-					[l1_key, updated_params(l1_val)]
+					[l1_key, reset_destroy(l1_val)]
 				elsif l1_key == '_destroy' && l1_val == 'true'
 					[l1_key, 'false']
 				else

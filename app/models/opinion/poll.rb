@@ -21,7 +21,7 @@ module Opinion
 
 		# TODO Comment me.
 		def at_least_two_options
-			if options.size < 2
+			if options.reject(&:marked_for_destruction?).size < 2
 				self.errors.add(:options, I18n.t("activerecord.errors.models.#{Opinion::Poll.model_name.i18n_key}.attributes.options.at_least_two",
 				                            default: 'at least two options must be defined'))
 			end
@@ -29,7 +29,7 @@ module Opinion
 
 		# TODO Comment me.
 		def unique_option_descriptions
-			unless options.map { |option| option.description } == options.map { |option| option.description }.uniq
+			unless options.reject(&:marked_for_destruction?).map { |option| option.description } == options.reject(&:marked_for_destruction?).map { |option| option.description }.uniq
 				self.errors.add(:options, I18n.t("activerecord.errors.models.#{Opinion::Poll.model_name.i18n_key}.attributes.options.unique",
 				                                 default: 'should be unique'))
 			end

@@ -54,5 +54,26 @@ module Opinion
 		def options_chart_data
 			Hash[options.map { |option| [option.description, option.votes_for]}]
 		end
+
+		# Tests whether this poll is ended.
+		#
+		# @return [Boolean] Whether this poll is ended.
+		def ended?
+			state == 'ended'
+		end
+
+		# Tests whether this poll is active.
+		#
+		# @return [Boolean] Whether this poll is active.
+		def active?
+			state == 'active'
+		end
+
+		# Tests whether this poll is pending.
+		#
+		# @return [Boolean] Whether this poll is pending.
+		def pending?
+			state == 'pending'
+		end
 	end
 end
